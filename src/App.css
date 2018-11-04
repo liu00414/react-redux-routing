@@ -20,27 +20,43 @@ nav a:hover{
     background-color: #9161d2;
     color: white;
 }
+ul{
+    padding: 0 5%;
+}
 li{
     border:0.5px solid #9161d2;
     list-style: none;
     border-left: .5rem solid #9161d2;
-    margin: 2rem;
+    margin: 2rem 0;
     padding: 2rem;
     line-height: 2rem;
 }
 button{
     padding: .5rem 1rem;
     float: right;
-    margin: 0 1rem;
+    margin-right: 1rem;
     background-color: white;
     border: 1px solid #9161d2;
 }
 button a{
     font-size: 1rem;
     text-decoration: none;
+    color: #9161d2;
 }
 .loader{
     width: 100%;
     text-align: center;
     font-size: 3rem;
+}
+a.active{
+    background-color: #9161d2;
+}
+@keyframes loader {
+    from {font-size: 1rem; color: white;}
+    to {font-size: 6rem; color:black;}
+}
+.loader{
+    font-weight: 700;
+    animation-name: loader;
+    animation-duration: 0.1s;
 }

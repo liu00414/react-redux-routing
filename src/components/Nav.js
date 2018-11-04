@@ -6,9 +6,9 @@ export default class Nav extends Component{
     render(){
         return(
         <nav>
-            <NavLink to="/">Users</NavLink>
-            <NavLink to="/to-dos">To Dos</NavLink>
-            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/" exact>Users</NavLink>
+            <NavLink to="/to-dos" exact>To Dos</NavLink>
+            <NavLink to="/posts" exact>Posts</NavLink>
         </nav>
         )
     }
