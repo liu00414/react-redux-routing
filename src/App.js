@@ -5,12 +5,12 @@ import Posts from './components/Posts.js';
 import NotFound from './components/NotFound.js';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons';
+
 
 library.add(faStroopwafel)
-
 
 class App extends Component {
 

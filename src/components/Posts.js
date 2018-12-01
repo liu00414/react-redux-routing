@@ -3,9 +3,10 @@ import Header from './Header.js';
 import Loader from './Loader.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinTongueSquint } from "@fortawesome/free-solid-svg-icons";
+import {connect} from 'react-redux';
+import {updatePosts} from '../actions';
 
-
-export default class Users extends Component{
+class Posts extends Component{
      constructor(){
         super();
         this.state = {
@@ -23,9 +24,10 @@ export default class Users extends Component{
             error: null,
             isLoading:false
         })
-        
+        this.props.onUpdatePosts(data);
     }
   componentDidMount(){
+      if(!this.props.posts){
         this.setState({isLoading:true});
         let url = 'https://jsonplaceholder.typicode.com/posts/';
         fetch(url)
@@ -34,7 +36,7 @@ export default class Users extends Component{
         .catch(err => {
             this.setState({error:err})
         })      
-      
+      }
     }
     render(){
         const userID=this.props.match.params.userID;
@@ -44,11 +46,11 @@ export default class Users extends Component{
            <Header page='Posts'/> 
            {this.state.isLoading&&<Loader />}
                 <ul>
-                    {(!userID)&&this.state.posts&&this.state.posts.map((item)=>(
+                    {(!userID)&&this.props.posts&&this.props.posts.map((item)=>(
                         <li key={item.id}><h3><FontAwesomeIcon icon={faGrinTongueSquint} />  {item.title}</h3><p>{item.body}</p>
                         </li>
                     ))}
-                    {userID&&this.state.posts&&this.state.posts.map((item)=>(
+                    {userID&&this.props.posts&&this.props.posts.map((item)=>(
                         item.userId==userID&&(<li key={item.id}><h3><FontAwesomeIcon icon={faGrinTongueSquint} /> {item.title}</h3><p>{item.body}</p>
                          <p>From: {userName}</p>                     
                         </li>)
@@ -58,3 +60,13 @@ export default class Users extends Component{
         )
     }
 }
+
+const mapStateToProps=state=>(
+    {posts:state.posts}
+)
+
+const mapActionsToProps={
+ onUpdatePosts:updatePosts   
+}
+
+export default connect(mapStateToProps,mapActionsToProps)(Posts)
